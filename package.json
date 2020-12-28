@@ -7,8 +7,10 @@
     "dev": "cross-env NODE_ENV=development nodemon app.js",
     "start": "cross-env NODE_ENV=production node app.js"
   },
-  "author": "Taha Shashtari <taha@tahazsh.com>",
+  "author": "22ndtech",
   "dependencies": {
+    "@octokit/core": "^3.2.4",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",

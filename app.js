@@ -8,7 +8,9 @@ require('dotenv').config({ path: '.env' })
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  user: "ndtech-sapper",
+  pass: process.env.NDTECH_NODE_SAPPER_PASSWORD
 })
 
 mongoose.connection.on('error', (err) => {
@@ -21,7 +23,10 @@ require('./models/User.js')
 
 require('./handlers/passport')
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}))
 
 app.use(bodyParser.json())
 
