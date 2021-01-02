@@ -30,14 +30,16 @@ const userSchema = new mongoose.Schema({
 // }
 
 userSchema.methods.getToken = function () {
-  return jwt.sign(
+  const signedJwt = jwt.sign(
     {
       id: this._id,
       username: this.username
     },
     'yoursecretkey',
     { expiresIn: '12h' }
-  )
+  );
+
+  return signedJwt;
 }
 
 // userSchema.pre('save', async function (next) {

@@ -4,13 +4,16 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 require('dotenv').config({ path: '.env' })
+console.log("process.env.NDTECH_NODE_API_DB_SERVER = " + process.env.NDTECH_NODE_API_DB_SERVER);
 
-mongoose.connect(process.env.DATABASE, {
+const mongooseConnectionURI = "mongodb://" + process.env.NDTECH_NODE_API_DB_SERVER + "/" + process.env.NDTECH_NODE_API_DB_NAME;
+mongoose.connect(mongooseConnectionURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  connectTimeoutMS: 3000,
   user: "ndtech-sapper",
-  pass: process.env.NDTECH_NODE_SAPPER_PASSWORD
+  pass: process.env.NDTECH_NODE_API_DB_PASSWORD
 })
 
 mongoose.connection.on('error', (err) => {

@@ -5,7 +5,9 @@ const passport = require('passport')
 const Story = mongoose.model('Story')
 const Comment = mongoose.model('Comment')
 
-router.get('/', async (req, res) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
   const stories = await Story
     .find()
     .limit(+req.query.limit || 10)
@@ -21,10 +23,12 @@ router.get('/', async (req, res) => {
   })
 })
 
-router.get('/:storyId', async (req, res) => {
-  const story = await Story.findOne({ _id: req.params.storyId })
-  res.json(story)
-})
+router.get('/:storyId',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    const story = await Story.findOne({ _id: req.params.storyId })
+    res.json(story)
+  })
 
 router.post(
   '/',

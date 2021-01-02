@@ -81,12 +81,17 @@ router.get('/signin/callback', async (req, res) => {
       }
     }
 
-    res.redirect("http://localhost:3000/logged-in?userName=" + userName);
+    // s = body.exp.toUTCString();
+    // res.cookie('id_token' ,user.getToken(), {expires: s});
+    let expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 1);
+    res.cookie('id_token' ,user.getToken(), {expires: expirationDate});
+    res.redirect("http://localhost:3000/logged-in?userName=" + userName + "&_id=" + user._id);
   })
   .catch((error) => {
     return res.send({
       success: false,
-      message: 'Error: no code'
+      message: error.message
     })
   })
 
