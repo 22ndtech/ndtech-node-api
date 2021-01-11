@@ -12,6 +12,7 @@ mongoose.connect(mongooseConnectionURI, {
   useCreateIndex: true,
   useUnifiedTopology: true,
   connectTimeoutMS: 3000,
+  socketTimeoutMS: 4000,
   user: "ndtech-sapper",
   pass: process.env.NDTECH_NODE_API_DB_PASSWORD
 })

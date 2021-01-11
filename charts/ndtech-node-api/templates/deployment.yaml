@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ndtech-node-api
+  namespace: {{ .Values.deployment.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  minReadySeconds: {{ .Values.deployment.minReadySeconds | default 3 }}
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ndtech-node-api
+  template:
+    metadata:
+      labels:
+        app: ndtech-node-api
+    spec:
+      containers:
+      - name: ndtech-node-api
+        image: "22ndtech/ndtech-ndtech-node-api:{{ .Values.deployment.imageVersion }}"
+        imagePullPolicy: Always
+        env:
+          - name: NDTECH_NODE_API_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: ndtech-node-api-db-password
+                key:  password
+          - name: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID
+          - name: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET
+          - name: NDTECH_NODE_API_SERVER_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_SERVER_NAME
+          - name: NDTECH_NODE_API_SERVER_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_SERVER_PORT
+          - name: NDTECH_NODE_API_IS_HTTPS
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_IS_HTTPS
+          - name: NDTECH_NODE_API_DB_SERVER
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_DB_SERVER
+          - name: NDTECH_NODE_API_DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_DB_NAME
+          - name: NDTECH_NODE_API_DB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: ndtech-node-api
+                key: NDTECH_NODE_API_DB_USER
+        ports:
+        - name: http
+          containerPort: {{ .Values.deployment.containerPort }}
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
+          requests:
+            cpu: "250m"
+            memory: "64Mi"

@@ -1,0 +1,11 @@
+# environment defaults internally to development
+# however, consumers can override it using a custom values file.
+environment: development
+serviceAccount:
+  name: ndtech-node-api
+deployment:
+  replicas: 1
+  minReadySeconds: 3
+  namespace: ndtech-staging
+  imageVersion: 0.0.1
+  containerPort: 5000

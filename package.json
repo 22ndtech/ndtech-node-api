@@ -1,7 +1,7 @@
 {
-  "name": "news-app-backend",
-  "version": "0.0.0",
-  "description": "The backend for the svelte news app",
+  "name": "ndtech-node-api",
+  "version": "0.0.1",
+  "description": "node api template for ndtech",
   "main": "app.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon app.js",
@@ -11,7 +11,6 @@
   "dependencies": {
     "@octokit/core": "^3.2.4",
     "axios": "^0.21.1",
-    "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
