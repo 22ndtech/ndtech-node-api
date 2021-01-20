@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: ndtech-node-api
-        image: "22ndtech/ndtech-ndtech-node-api:{{ .Values.deployment.imageVersion }}"
+        image: "22ndtech/ndtech-node-api:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         env:
           - name: NDTECH_NODE_API_DB_PASSWORD
