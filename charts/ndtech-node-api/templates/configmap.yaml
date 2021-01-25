@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ndtech-node-api
-  namespace: ndtech-staging
+  namespace: ndtech
 data:
   JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID: "2d4079dfff80ceb2c3a7"
   NDTECH_NODE_API_SERVER_NAME: "localhost"
