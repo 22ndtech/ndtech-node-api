@@ -30,16 +30,16 @@ spec:
               secretKeyRef:
                 name: ndtech-node-api-db-password
                 key:  password
+          - name: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: jaackd-reality-github-oauth-client-secret
+                key: secret
           - name: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID
             valueFrom:
               configMapKeyRef:
                 name: ndtech-node-api
                 key: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID
-          - name: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: ndtech-node-api
-                key: JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET
           - name: NDTECH_NODE_API_SERVER_NAME
             valueFrom:
               configMapKeyRef:
