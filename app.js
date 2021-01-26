@@ -7,6 +7,7 @@ require('dotenv').config({ path: '.env' })
 console.log("process.env.NDTECH_NODE_API_DB_SERVER = " + process.env.NDTECH_NODE_API_DB_SERVER);
 
 const mongooseConnectionURI = "mongodb://" + process.env.NDTECH_NODE_API_DB_SERVER + ":27017/" + process.env.NDTECH_NODE_API_DB_NAME;
+console.log("mongooseConnectionURI = " + mongooseConnectionURI);
 mongoose.connect(mongooseConnectionURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
