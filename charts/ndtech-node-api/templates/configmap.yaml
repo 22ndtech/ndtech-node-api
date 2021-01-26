@@ -5,9 +5,9 @@ metadata:
   namespace: ndtech
 data:
   JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID: "2d4079dfff80ceb2c3a7"
-  NDTECH_NODE_API_SERVER_NAME: "mongo-0.mongo,mongo-1.mongo,mongo-2.mongo"
+  NDTECH_NODE_API_SERVER_NAME: "localhost"
   NDTECH_NODE_API_SERVER_PORT: "5000"
   NDTECH_NODE_API_IS_HTTPS: "false"
-  NDTECH_NODE_API_DB_SERVER: "localhost"
+  NDTECH_NODE_API_DB_SERVER: "mongo-0.mongo,mongo-1.mongo,mongo-2.mongo"
   NDTECH_NODE_API_DB_NAME: "ndtech-sapper"
   NDTECH_NODE_API_DB_USER: "ndtech-sapper"
