@@ -7,5 +7,5 @@ deployment:
   replicas: 1
   minReadySeconds: 3
   namespace: ndtech-staging
-  imageVersion: 0.0.1
+  imageVersion: 0.0.2
   containerPort: 5000

@@ -1,1 +1,1 @@
-docker push 22ndtech/ndtech-node-api:latest
+docker push 22ndtech/ndtech-node-api:0.0.2

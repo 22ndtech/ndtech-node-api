@@ -8,6 +8,6 @@ data:
   NDTECH_NODE_API_SERVER_NAME: "localhost"
   NDTECH_NODE_API_SERVER_PORT: "5000"
   NDTECH_NODE_API_IS_HTTPS: "false"
-  NDTECH_NODE_API_DB_SERVER: "mongo-0.mongo,mongo-1.mongo,mongo-2.mongo"
+  NDTECH_NODE_API_DB_SERVER: "mongodb-0.mongodb-svc.mongo.svc.cluster.local:27017,mongodb-1.mongodb-svc.mongo.svc.cluster.local:27017,mongodb-2.mongodb-svc.mongo.svc.cluster.local"
   NDTECH_NODE_API_DB_NAME: "ndtech-sapper"
   NDTECH_NODE_API_DB_USER: "ndtech-sapper"

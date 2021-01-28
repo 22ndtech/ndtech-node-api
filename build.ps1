@@ -1,6 +1,6 @@
 docker build `
   -f .\Dockerfile `
-  -t 22ndtech/ndtech-node-api:0.0.1 `
+  -t 22ndtech/ndtech-node-api:latest `
   --build-arg GITHUB_USER=$ENV:GITHUB_USER `
   --build-arg GITHUB_TOKEN=$ENV:GITHUB_TOKEN `
   --build-arg GITHUB_ORGANIZATION="22ndtech" `

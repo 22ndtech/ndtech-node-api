@@ -1,1 +1,1 @@
-docker tag 22ndtech/ndtech-node-api:0.0.1 22ndtech/ndtech-node-api:latest
+docker tag 22ndtech/ndtech-node-api:latest 22ndtech/ndtech-node-api:0.0.2
