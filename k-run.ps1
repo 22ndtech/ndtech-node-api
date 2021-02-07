@@ -15,4 +15,4 @@ kubectl run go-first `
 -e NDTECH_NODE_API_DB_USER="$ENV:NDTECH_NODE_API_DB_USER" `
 -e NDTECH_NODE_API_DB_PASSWORD="$ENV:NDTECH_NODE_API_DB_PASSWORD" `
 -e GIT_REPOSITORY_NAME="ndtech" `
---image=22ndtech/ndtech-node-api:0.0.1
+--image=22ndtech/ndtech-node-api:0.0.3

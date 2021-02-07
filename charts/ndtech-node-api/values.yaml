@@ -7,5 +7,6 @@ deployment:
   replicas: 1
   minReadySeconds: 3
   namespace: ndtech-staging
-  imageVersion: 0.0.2
+  imageVersion: 0.0.3
   containerPort: 5000
+  nodeApiUrl: ndtech-staging.www.22ndtech.com

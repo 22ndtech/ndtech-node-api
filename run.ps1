@@ -16,4 +16,4 @@ docker run `
 -e NDTECH_NODE_API_DB_PASSWORD="$ENV:NDTECH_NODE_API_DB_PASSWORD" `
 -e GIT_REPOSITORY_NAME="ndtech" `
 -p 5000:5000 `
---rm --network host 22ndtech/ndtech-node-api:0.0.1
+--rm --network host 22ndtech/ndtech-node-api:0.0.3

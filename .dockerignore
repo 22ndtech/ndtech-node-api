@@ -1,0 +1,5 @@
+./.vscode
+./charts
+./node_modules
+*.ps1
+.env

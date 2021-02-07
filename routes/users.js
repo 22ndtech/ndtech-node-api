@@ -35,15 +35,15 @@ router.get('/signin/callback', async (req, res) => {
       success: false,
       message: 'Error: no code'
     })
-  }
+  } 
 
   const axios = require('axios').default;
+
   axios
     .post('https://github.com/login/oauth/access_token', {
       client_id: process.env.JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID,
       client_secret: process.env.JAACKD_REALITY_GITHUB_OAUTH_CLIENT_SECRET,
-      code: code,
-      redirect_uri: "http://localhost:3000/signin/callback/logged-in"
+      code: code
     })
     .then(async (response) => {
       const data = response.data;
@@ -51,9 +51,12 @@ router.get('/signin/callback', async (req, res) => {
       const querystring = require('querystring');
       const queryData = querystring.parse(data);
 
+
       const { Octokit } = require("@octokit/core");
       const { access_token } = queryData;
+
       const octokit = new Octokit({ auth: access_token });
+
       const getUserResponse = await octokit.request('GET /user');
 
       const { data: githubData } = getUserResponse;
@@ -61,8 +64,9 @@ router.get('/signin/callback', async (req, res) => {
 
       // check for an existing user
       const user = await User.findOne({ username: userName })
-
+      
       if (!user) {
+        console.log("no existing user found when logging in from github - creating new user " + user);
         // create a new user
         try {
           const user = await (new User({
@@ -72,6 +76,7 @@ router.get('/signin/callback', async (req, res) => {
           }).save())
 
         } catch (err) {
+          console.log("error creating user " + err.message);
           if (err.code === 11000) {
             next({
               status: 409,
@@ -87,9 +92,10 @@ router.get('/signin/callback', async (req, res) => {
       let expirationDate = new Date();
       expirationDate.setDate(expirationDate.getDate() + 1);
       res.cookie('id_token', user.getToken(), { expires: expirationDate });
-      res.redirect("http://localhost:3000/logged-in?userName=" + userName + "&_id=" + user._id);
+      res.redirect("http://" + process.env.NDTECH_NODE_API_SERVER_NAME + "/logged-in?userName=" + userName + "&_id=" + user._id);
     })
     .catch((error) => {
+      console.log("not sure what this is " + error.message);
       return res.send({
         success: false,
         message: error.message
@@ -98,6 +104,27 @@ router.get('/signin/callback', async (req, res) => {
 
 })
 
+router.post('/signin/callback/redirect', async (req, res, next) => {
+  try {
+    const user = await (new User({
+      username: req.body.username,
+      password: req.body.password
+    }).save())
+    res.json({
+      _id: user._id,
+      username: user.username,
+      token: user.getToken()
+    })
+  } catch (err) {
+    if (err.code === 11000) {
+      next({
+        status: 409,
+        message: 'This username already exists!'
+      })
+    }
+    next()
+  }
+})
 
 router.get('/GetLoggedInUser',
   passport.authenticate('jwt', { session: false }),
