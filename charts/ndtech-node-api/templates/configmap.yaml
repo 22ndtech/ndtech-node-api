@@ -4,7 +4,7 @@ metadata:
   name: ndtech-node-api
   namespace: {{ .Values.deployment.namespace }}
 data:
-  JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID: "2d4079dfff80ceb2c3a7"
+  JAACKD_REALITY_GITHUB_OAUTH_CLIENT_ID: "8579c818edb32a099c96"
   NDTECH_NODE_API_SERVER_NAME: {{ .Values.deployment.nodeApiUrl }}
   NDTECH_NODE_API_SERVER_PORT: "5000"
   NDTECH_NODE_API_IS_HTTPS: "false"

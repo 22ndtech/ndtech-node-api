@@ -95,7 +95,6 @@ router.get('/signin/callback', async (req, res) => {
       res.redirect("http://" + process.env.NDTECH_NODE_API_SERVER_NAME + "/logged-in?userName=" + userName + "&_id=" + user._id);
     })
     .catch((error) => {
-      console.log("not sure what this is " + error.message);
       return res.send({
         success: false,
         message: error.message
